@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Fit Dashboard</title>
+  <style>
+    /* Your CSS styles go here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1em;
+      text-align: center;
+    }
+
+    #dashboard {
+      display: flex;
+      justify-content: space-around;
+      padding: 2em;
+    }
+
+    #fitness-data {
+      flex: 1;
+      padding: 1em;
+      border: 1px solid #ccc;
+      margin-right: 1em;
+    }
+
+    #charts {
+      flex: 1;
+      padding: 1em;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Google Fit Dashboard</h1>
+  </header>
+
+  <div id="dashboard">
+    <div id="fitness-data">
+      <h2>Fitness Data</h2>
+      <button onclick="displayFitnessData()">Fetch Fitness Data</button>
+      <div id="fitness-results"></div>
+    </div>
+
+    <div id="charts">
+      <h2>Charts</h2>
+      <!-- Include your chart libraries or implementation here -->
+    </div>
+  </div>
+
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script>
+   function initGoogleFit() {
+  gapi.client.init({
+    apiKey: 'AIzaSyDgP3JoWMilh4fb6DWC1kPd1I3Ld6SP3_4', // Replace with your actual API key
+    clientId: '647037879688-p5bog3s7agv892d0iis6j265r50mtoa5.apps.googleusercontent.com', // Wrap in single quotes
+    discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/fitness/v1/rest'],
+    scope: 'https://www.googleapis.com/auth/fitness.activity.read',
+  }).then(function () {
+    // Additional initialization if needed
+  });
+}
+
+
+    function signInGoogleFit() {
+      gapi.auth2.getAuthInstance().signIn().then(initGoogleFit);
+    }
+
+    function displayFitnessData() {
+      gapi.client.fitness.users.dataSources.list({
+        "userId": "me"
+      }).then(function (response) {
+        const fitnessResults = document.getElementById('fitness-results');
+        fitnessResults.innerHTML = JSON.stringify(response.result, null, 2);
+      });
+    }
+
+    gapi.load('client:auth2', signInGoogleFit);
+  </script>
+</body>
+</html>
