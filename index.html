@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Fit Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Google Fit Dashboard</h1>
+  </header>
+
+  <div id="dashboard">
+    <div id="fitness-data">
+      <h2>Fitness Data</h2>
+      <button onclick="displayFitnessData()">Fetch Fitness Data</button>
+      <div id="fitness-results"></div>
+    </div>
+
+    <div id="charts">
+      <h2>Charts</h2>
+      <!-- Include your chart libraries or implementation here -->
+    </div>
+  </div>
+
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
