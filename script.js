@@ -5,7 +5,6 @@ function initGoogleFit() {
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/fitness/v1/rest'],
     scope: 'https://www.googleapis.com/auth/fitness.activity.read',
   }).then(function () {
-    // Additional initialization if needed
   });
 }
 
